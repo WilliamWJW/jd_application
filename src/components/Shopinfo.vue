@@ -1,0 +1,77 @@
+<template>
+<!-- 商家店铺 -->
+  <div class="shop">
+    <img class="shop__img" :src="item.imgUrl" />
+
+    <div class="shop__content">
+      <div class="shop__content__title">{{ item.name }}</div>
+      <div class="shop__content__tags">
+        <span class="shop__content__tag">月售: {{ item.sales }}</span>
+        <span class="shop__content__tag">起送: {{ item.expressLimit }}</span>
+        <span class="shop__content__tag"
+          >基础运费: {{ item.expressPrice }}</span
+        >
+      </div>
+      <!-- 'shop__content--bordered':hideBorder ? false :true 如果没传递hideborder那么为ture就显示下划线 -->
+      <!-- 如果传递了就为false，隐藏下划线 -->
+      <p
+        :class="{
+          shop__content__highlight: true,
+          'shop__content__highlight--bordered': hideBorder ? false : true
+        }"
+      >
+        {{ item.slogan }}
+      </p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ShopInfo",
+  //   hideborder用来控制下划线的隐藏显示
+  props: ["item", "hideBorder"]
+};
+</script>
+
+<style lang="scss" scoped>
+@import "../style/viriables.scss";
+@import "../style/mixins.scss";
+.shop {
+  display: flex;
+  padding-top: 0.12rem;
+  &__img {
+    margin-right: 0.16rem;
+    width: 0.56rem;
+    height: 0.56rem;
+  }
+  &__content {
+    flex: 1;
+    padding-bottom: 0.12rem;
+    &__title {
+      line-height: 0.22rem;
+      font-size: 0.16rem;
+      color: $content-fontcolor;
+    }
+    &__tags {
+      margin-top: 0.08rem;
+      line-height: 0.18rem;
+      font-size: 0.13rem;
+      color: $content-fontcolor;
+    }
+    &__tag {
+      margin-right: 0.16rem;
+    }
+    &__highlight {
+      margin: 0.08rem 0 0.12rem 0;
+      line-height: 0.18rem;
+      font-size: 0.13rem;
+      color: #e93b3b;
+      //   --表示是否使用
+      &--bordered {
+        border-bottom: 1px solid $content-bgColor;
+      }
+    }
+  }
+}
+</style>
